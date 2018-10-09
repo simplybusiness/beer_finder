@@ -38,6 +38,9 @@ group :development, :test do
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'rspec-rails'
+  # Debugger for Rails. To use put this anywhere in the code: `binding.pry`
+  gem 'pry-rails'
+  gem 'pry-byebug'
 end
 
 group :development do

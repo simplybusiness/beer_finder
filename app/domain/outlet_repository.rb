@@ -1,4 +1,4 @@
 class OutletRepository
-  def get_outlets
+  def self.get_outlets
   end
 end
