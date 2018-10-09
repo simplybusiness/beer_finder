@@ -1,0 +1,21 @@
+{
+    "outlets" : [
+        {
+            "name" : "Red Lion",
+            "address" : ["99 Gresham Street", "London"],
+            "postcode" : "EC2V 7NG",
+            "type" : "pub",
+            "website" : "http://www.bbc.co.uk",
+            "geolocation" : [0,0],
+            "distance" : 0,
+            "stock" : [
+                {
+                    "name" : "Gecko",
+                    "style" : "Little Beer",
+                    "servingStyle" : "can",
+                    "deliveryDate" : "2018-10-09"
+                }
+            ]
+        }
+    ]
+}
