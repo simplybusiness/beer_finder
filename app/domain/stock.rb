@@ -3,7 +3,7 @@ class Stock
 
   def initialize(name, style, serving_style, delivery_date)
     @name = name
-    @style = style
+    @style = style || 'keg'
     @serving_style = serving_style
     @delivery_date = delivery_date
   end

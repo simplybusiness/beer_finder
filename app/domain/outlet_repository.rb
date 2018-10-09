@@ -14,13 +14,15 @@ class OutletRepository
           outlet = build_outlet(invoice)
           outlets[invoice.contact_id] = outlet
         end
+        build_stock(invoice).each { |i| outlet.add_stock_item(i) }
       end
+      puts outlets.to_json
     end
 
     private
 
     def xero_client
-      Xeroizer::PrivateApplication.new(ENV['XERO_CONSUMER_KEY'], ENV['XERO_CONSUMER_SECRET'], ENV['XERO_PRIVATE_KEY_PATH'])
+      @@xero_client = Xeroizer::PrivateApplication.new(ENV['XERO_CONSUMER_KEY'], ENV['XERO_CONSUMER_SECRET'], ENV['XERO_PRIVATE_KEY_PATH'])
     end
 
     def build_outlet(invoice)
@@ -30,6 +32,11 @@ class OutletRepository
       Outlet.new(invoice.contact_name, address, full_address.postal_code, type)
     end
 
+    def build_stock(invoice)
+      invoice.line_items.map do |item|
+        Stock.new(item.item_code, nil, item.item_code, invoice.date)
+      end
+    end
   end
 end
 
