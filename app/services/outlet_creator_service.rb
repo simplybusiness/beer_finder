@@ -1,4 +1,18 @@
 class OutletCreatorService
+  class BeerFinderPrivateApplication < ::Xeroizer::GenericApplication
+    extend Forwardable
+    def_delegators :client, :authorize_from_access
+
+    public
+
+    def initialize(consumer_key, consumer_secret, private_key, options = {})
+      options[:signature_method] = 'RSA-SHA1'
+      options[:private_key] = private_key
+      super(consumer_key, consumer_secret, options)
+      @client.authorize_from_access(consumer_key, consumer_secret)
+    end
+  end
+
   FROM_DATE = 1.weeks.ago
 
   def self.create_from_xero(from_date: FROM_DATE)
@@ -48,17 +62,4 @@ class OutletCreatorService
     outlet.save
   end
 
-  class BeerFinderPrivateApplication < ::Xeroizer::GenericApplication
-    extend Forwardable
-    def_delegators :client, :authorize_from_access
-
-    public
-
-    def initialize(consumer_key, consumer_secret, private_key, options = {})
-      options[:signature_method] = 'RSA-SHA1'
-      options[:private_key] = private_key
-      super(consumer_key, consumer_secret, options)
-      @client.authorize_from_access(consumer_key, consumer_secret)
-    end
-  end
 end
