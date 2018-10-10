@@ -1,15 +1,39 @@
 class OutletRepository
-  def self.get_outlets
-    outlets = Outlet.all
-    sort_by_name(outlets.to_a)
-  end
 
-  def self.sort_by_name(outlets)
+  class << self
 
-    outlets.sort! { |x,y| no_definite_article(x.name) <=> no_definite_article(y.name) }
-  end
 
-  def self.no_definite_article(text)
-    text.sub /^The /, ''
+    def get_outlets
+      outlets = Outlet.all
+      sort_by_name(outlets.to_a)
+
+      location = CoordinatesQuery.for_postcode('EC2V 7NG')
+      sort_by_distance(outlets.to_a, location)
+    end
+
+    private
+
+    def sort_by_name(outlets)
+      outlets.sort! { |x, y| no_definite_article(x.name) <=> no_definite_article(y.name) }
+    end
+
+    def no_definite_article(text)
+      text.sub /^The /, ''
+    end
+
+    def sort_by_distance(outlets, location)
+      add_distances(outlets, location)
+      outlets.sort! { |x, y| x.distance <=> y.distance }
+    end
+
+    def add_distances(outlets, location)
+      outlets.each { |o| add_distance(o, location) }
+    end
+
+    def add_distance(outlet, location)
+      outlet_location = [ outlet.lat, outlet.long ]
+      outlet.distance = Utils.distance_in_miles(outlet_location, location).round
+    end
+
   end
 end
