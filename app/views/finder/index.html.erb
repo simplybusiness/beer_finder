@@ -1,0 +1,16 @@
+<% @outlets.each do |outlet| %>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title"><%= outlet.name %> <small class="text-muted"><%= outlet.type %></small></h5>
+      <h6 class="card-subtitle mb-2 text-muted"><%= outlet.address.join(', ') %>, <%= outlet.postcode %></h6>
+      <div class="card-text">
+
+      </div>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last delivery 8 days ago</small>
+    </div>
+  </div>
+
+  </br>
+<% end %>
