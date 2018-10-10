@@ -33,6 +33,7 @@ class OutletRepository
     def add_distance(outlet, location)
       outlet_location = [ outlet.lat, outlet.long ]
       outlet.distance = Utils.distance_in_miles(outlet_location, location).round
+      outlet.distance_units = ' miles away'
     end
 
   end
