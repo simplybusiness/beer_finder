@@ -17,7 +17,7 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  username: pawel.dawczak
+  username: Lewis.Jones
   password: ""
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
@@ -82,6 +82,4 @@ test:
 #
 production:
   <<: *default
-  database: beer_finder_production
-  username: username
-  password: <%= ENV['BEER_FINDER_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
