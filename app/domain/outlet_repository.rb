@@ -1,5 +1,5 @@
 class OutletRepository
   def self.get_outlets
-    Outlet.order(:name)
+    outlets = Outlet.all
   end
 end
