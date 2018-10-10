@@ -3,11 +3,11 @@ class OutletRepository
   class << self
 
 
-    def get_outlets
+    def get_outlets(postcode = nil)
       outlets = Outlet.all
-      sort_by_name(outlets.to_a)
+      return sort_by_name(outlets.to_a) unless postcode.present?
 
-      location = CoordinatesQuery.for_postcode('EC2V 7NG')
+      location = CoordinatesQuery.for_postcode(postcode)
       sort_by_distance(outlets.to_a, location)
     end
 
