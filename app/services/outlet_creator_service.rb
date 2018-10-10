@@ -14,7 +14,8 @@ class OutletCreatorService
         postcode: invoice_address.postal_code
       )
       invoice.line_items.each do |item|
-        outlet.stock_items.create(
+        outlet.stock_items.find_or_create_by(
+          invoice_id: invoice.id,
           name: Utils.get_beer_name(item.item_code),
           style: 'beer',
           serving_style: Utils.serving_style(item.item_code),
