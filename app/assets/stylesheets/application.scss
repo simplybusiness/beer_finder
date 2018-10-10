@@ -13,3 +13,23 @@
  */
 
 @import "bootstrap";
+
+body {
+  background-image: image-url("Villages_Background.jpg");
+  color: white;
+}
+
+.card {
+  //opacity: 0.2;
+  color: white;
+
+
+  background: rgba(255,255,255,0.2);
+}
+
+.sb-translucent {
+  opacity: 0.2;
+  //background: rgba(255,255,255,0.2);
+  color: white;
+
+}
