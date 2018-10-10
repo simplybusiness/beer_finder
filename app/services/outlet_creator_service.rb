@@ -14,12 +14,16 @@ class OutletCreatorService
   end
 
   FROM_DATE = 1.weeks.ago
+  CANNOT_BUY_FROM_GROUPS = ['Wholesale', 'Private', 'Online Retailer']
 
   def self.create_from_xero(from_date: FROM_DATE)
     invoices = xero_client.Invoice.all(
       where: { type: 'ACCREC', date_is_greater_than: FROM_DATE}
     )
-    invoices.select { |invoice| invoice.contact_name != "iZettle AB" }.each do |invoice|
+    invoices
+      .select { |invoice| invoice.contact_name != "iZettle AB" }
+      .reject { |invoice| invoice.contact.contact_groups.map(&:name).any?{ |n| CANNOT_BUY_FROM_GROUPS.include?(n) } }
+      .each do |invoice|
       invoice_address = address(invoice.contact)
       outlet = Outlet.find_or_create_by(
         xero_contact_id: invoice.contact_id,
