@@ -15,21 +15,24 @@
 @import "bootstrap";
 
 body {
-  background-image: image-url("Villages_Background.jpg");
+  background: image-url("Villages_Background.jpg");
   color: white;
+}
+
+.sb-header {
+  background: #426178;
+  color: white;
+
+  a{
+    color: #e6e5d8;
+  }
 }
 
 .card {
-  //opacity: 0.2;
-  color: white;
+  color: #e6e5d8;
+  background: #426178;
 
-
-  background: rgba(255,255,255,0.2);
-}
-
-.sb-translucent {
-  opacity: 0.2;
-  //background: rgba(255,255,255,0.2);
-  color: white;
-
+  .list-group-item {
+    background: #4b6f89;
+  }
 }
