@@ -13,6 +13,7 @@ class OutletCreatorService
         address: "#{invoice_address.line1}, #{invoice_address.city}",
         postcode: invoice_address.postal_code
       )
+      assign_geolocation(outlet)
       invoice.line_items.each do |item|
         outlet.stock_items.find_or_create_by(
           invoice_id: invoice.id,
@@ -34,5 +35,16 @@ class OutletCreatorService
 
   def self.address(contact)
     contact.addresses.find { |a| a.type == "POBOX" }
+  end
+
+  def self.assign_geolocation(outlet)
+    coords = CoordinatesQuery.for_postcode(outlet.postcode)
+    if coords.empty?
+      puts "Could not get geolocation for #{outlet.postcode}"
+      return
+    end
+    outlet.lat = coords.first
+    outlet.long = coords.last
+    outlet.save
   end
 end
