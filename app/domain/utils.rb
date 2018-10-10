@@ -3,12 +3,17 @@ class Utils
   class << self
 
     def get_beer_name(text)
-      text = text.sub /\ can.*/, ''
-      text.sub /\ keg.*/, ''
+      t = text.clone
+      t = t.sub /\ can.*/, ''
+      t = t.sub /\ Can.*/, ''
+      t = t.sub /\ keg.*/, ''
+      t.sub /\ Keg.*/, ''
     end
 
     def is_keg?(text)
-      text.include? 'keg'
+      return true if text.include? 'keg'
+      return true if text.include? 'Keg'
+      false
     end
 
     def serving_style(text)
