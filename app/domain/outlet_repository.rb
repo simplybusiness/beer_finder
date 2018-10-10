@@ -2,7 +2,7 @@ class OutletRepository
   DEFAULT_TYPE = 'do not know'
   FROM_DATE = 1.weeks.ago
 
-  def get_outlets
+  def self.get_outlets
     invoices = xero_client.Invoice.all(where: { type: 'ACCREC', date_is_greater_than: FROM_DATE})
     outlets = {}
     invoices.each do |invoice|
