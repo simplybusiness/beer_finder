@@ -47,13 +47,18 @@ class OutletCreatorService
     outlet.long = coords.last
     outlet.save
   end
-end
 
-class BeerFinderPrivateApplication < Xeroizer::PrivateApplication
-  def initialize(consumer_key, consumer_secret, path_to_private_key, options = {})
-    options[:signature_method] = 'RSA-SHA1'
-    options[:private_key] = path_to_private
-    super(consumer_key, consumer_secret, options)
-    @client.authorize_from_access(consumer_key, consumer_secret)
+  class BeerFinderPrivateApplication < ::Xeroizer::GenericApplication
+    extend Forwardable
+    def_delegators :client, :authorize_from_access
+
+    public
+
+    def initialize(consumer_key, consumer_secret, private_key, options = {})
+      options[:signature_method] = 'RSA-SHA1'
+      options[:private_key] = private_key
+      super(consumer_key, consumer_secret, options)
+      @client.authorize_from_access(consumer_key, consumer_secret)
+    end
   end
 end
