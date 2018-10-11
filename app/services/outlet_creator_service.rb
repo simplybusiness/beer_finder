@@ -58,7 +58,7 @@ class OutletCreatorService
   def self.assign_geolocation(outlet)
     coords = CoordinatesQuery.for_postcode(outlet.postcode)
     if coords.empty?
-      puts "Could not get geolocation for #{outlet.postcode}"
+      puts "Could not get geolocation for outlet: #{outlet.name} postcode: #{outlet.postcode}"
       return
     end
     outlet.lat = coords.first

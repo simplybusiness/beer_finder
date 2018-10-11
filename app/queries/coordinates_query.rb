@@ -1,6 +1,7 @@
 class CoordinatesQuery
   def self.for_postcode(postcode)
     results = Geocoder.search(postcode)
-    results.first.coordinates
+    return results.first.coordinates if results.present?
+    []
   end
 end
