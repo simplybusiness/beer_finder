@@ -1,10 +1,11 @@
 class OutletRepository
+  MINIMUM_DELIVERY_DATE = 4.weeks.ago
 
   class << self
 
 
     def get_outlets(postcode = nil)
-      outlets = Outlet.all
+      outlets = Outlet.joins(:stock_items).where('stock_items.delivery_date > ?', MINIMUM_DELIVERY_DATE)
       return sort_by_name(outlets.to_a) unless postcode.present?
 
       location = CoordinatesQuery.for_postcode(postcode)
