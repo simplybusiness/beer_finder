@@ -1,4 +1,7 @@
 class StockItem < ApplicationRecord
-  attr_accessor :icon
   belongs_to :outlet
+
+  def icon
+    serving_style == 'keg' ? 'tap.png' : 'beer-can.png'
+  end
 end
