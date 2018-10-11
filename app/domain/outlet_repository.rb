@@ -14,7 +14,6 @@ class OutletRepository
     private
 
     def sort_by_name(outlets)
-      clean_up_all(outlets)
       outlets.sort! { |x, y| no_definite_article(x.name) <=> no_definite_article(y.name) }
     end
 
@@ -23,7 +22,6 @@ class OutletRepository
     end
 
     def sort_by_distance(outlets, location)
-      clean_up_all(outlets)
       add_distances(outlets, location)
       outlets.sort! { |x, y| x.distance <=> y.distance }
     end
@@ -37,22 +35,5 @@ class OutletRepository
       outlet.distance = Utils.distance_in_miles(outlet_location, location).round
       outlet.distance_units = ' miles away'
     end
-
-
-    def clean_up_all(outlets)
-      outlets.each { |o| clean_up_stock(o) }
-    end
-
-    def clean_up_stock(outlet)
-      outlet.stock_items.each { |o| clean_up(o) }
-    end
-
-    def clean_up(stock_item)
-      # stock_item.name = Utils.get_beer_name(name)
-      # stock_item.serving_style = Utils.serving_style(name)
-      stock_item.icon = stock_item.serving_style == 'keg' ? 'tap.png' : 'beer-can.png'
-    end
-
-
   end
 end
