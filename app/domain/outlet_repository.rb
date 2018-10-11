@@ -5,7 +5,7 @@ class OutletRepository
 
 
     def get_outlets(postcode = nil)
-      outlets = Outlet.joins(:stock_items).where('stock_items.delivery_date > ?', MINIMUM_DELIVERY_DATE)
+      outlets = Outlet.joins(:stock_items).where('stock_items.delivery_date > ?', MINIMUM_DELIVERY_DATE).uniq
       return sort_by_name(outlets.to_a) unless postcode.present?
 
       location = CoordinatesQuery.for_postcode(postcode)
