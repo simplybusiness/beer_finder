@@ -22,7 +22,7 @@
           <div class="col-sm">
             <div class="card-text">
               <ul class="list-group">
-                <% outlet.stock_items.each do |stock| %>
+                <% outlet.recent_stock_items.each do |stock| %>
                   <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div><span><%= image_tag stock.icon, size: "24x24" %> </span> <%= stock.name %></div>
                     <small><%= time_ago_in_words(stock.delivery_date) %> ago</small>
