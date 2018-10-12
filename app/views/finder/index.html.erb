@@ -1,4 +1,3 @@
-<%= react_component('HelloMessage', name: 'John') %>
 <%= form_tag('/', method: 'post') do %>
   <div class="form-row">
     <div class="col-auto">
@@ -10,32 +9,5 @@
   </div>
 <% end %>
 
-<% @outlets.each do |outlet| %>
-  <div class="card">
-    <div class="card-body">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm">
-            <h4 class="card-title"><%= outlet.name %> <small><%= outlet.outlet_type %></small></h4>
-            <h6 class="card-subtitle mb-2"><%= outlet.address %>, <%= outlet.postcode %></h6>
-            <div><%= outlet.distance %> <%= outlet.distance_units %> </div>
-          </div>
-          <div class="col-sm">
-            <div class="card-text">
-              <ul class="list-group">
-                <% outlet.recent_stock_items.each do |stock| %>
-                  <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <div><span><%= image_tag stock.icon, size: "24x24" %> </span> <%= stock.name %></div>
-                    <small><%= time_ago_in_words(stock.delivery_date) %> ago</small>
-                  </li>
-                <% end %>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  </br>
-<% end %>
+<%= react_component('Outlets', outlets: @outlets) %>
