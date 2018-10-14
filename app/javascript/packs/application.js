@@ -6,9 +6,9 @@
 //
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
-import Outlets from './outlets'
+import Finder from './finder'
 import WebpackerReact from 'webpacker-react'
 
-WebpackerReact.setup({Outlets})
+WebpackerReact.setup({Finder})
 
 console.log('Hello World from Webpacker')
