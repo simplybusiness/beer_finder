@@ -1,4 +1,6 @@
-class Outlets extends React.Component {
+import React from 'react'
+
+export default class Outlets extends React.Component {
 
   renderStockItems(items) {
     return items.map(item => {
