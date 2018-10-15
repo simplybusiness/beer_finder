@@ -1,13 +1,1 @@
-<%= form_tag('/', method: 'post') do %>
-  <div class="form-row">
-    <div class="col-auto">
-      <%= text_field_tag 'postcode', params[:postcode], placeholder: 'Postcode', class: 'form-control mb-2' %>
-    </div>
-    <div class="col-auto">
-      <%= submit_tag("Go", class: "btn btn-primary mb-2") %>
-    </div>
-  </div>
-<% end %>
-
-
 <%= react_component('Finder', outlets: @outlets) %>
