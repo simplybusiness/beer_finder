@@ -4,7 +4,11 @@ class OutletRepository
   class << self
 
     def get_outlets
-      outlets = Outlet.joins(:stock_items).where('stock_items.delivery_date > ?', MINIMUM_DELIVERY_DATE).uniq
+      outlets = Outlet
+        .includes(:stock_items)
+        .joins(:stock_items)
+        .where('stock_items.delivery_date > ?', MINIMUM_DELIVERY_DATE)
+        .uniq
       sort_by_name(outlets.to_a)
       add_items(outlets.to_a)
     end
