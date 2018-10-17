@@ -1,7 +1,7 @@
 import React from 'react'
-import PostcodesIO from 'postcodesio-client'
 import geolib from 'geolib'
 import _ from 'lodash'
+import lookUpPostcode from './utils/lookUpPostcode'
 import Outlets from './outlets'
 
 export default class Finder extends React.Component {
@@ -13,16 +13,7 @@ export default class Finder extends React.Component {
     };
   }
 
-  lookUpPostcode(postcode) {
-    const postcodes = new PostcodesIO();
-    postcodes.lookup(postcode).then(postcode => {
-      this.sortByDistance(postcode.latitude, postcode.longitude);
-    }).catch(
-      () => console.log('unable to recognise postcode')
-    )
-  }
-
-  sortByDistance(lat, long) {
+  sortByDistance = (lat, long) => {
     const newOutlets = this.state.outlets.map(outlet => {
       let distance = geolib.getDistance(
         {latitude: outlet.lat, longitude: outlet.long},
@@ -43,7 +34,7 @@ export default class Finder extends React.Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.lookUpPostcode(this.state.postcode);
+    lookUpPostcode(this.state.postcode, this.sortByDistance);
   }
 
   renderForm() {
