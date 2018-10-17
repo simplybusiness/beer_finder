@@ -10,5 +10,3 @@ import Finder from './finder'
 import WebpackerReact from 'webpacker-react'
 
 WebpackerReact.setup({Finder})
-
-console.log('Hello World from Webpacker')
