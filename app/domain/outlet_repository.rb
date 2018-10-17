@@ -3,15 +3,10 @@ class OutletRepository
 
   class << self
 
-
-    def get_outlets(postcode = nil)
+    def get_outlets
       outlets = Outlet.joins(:stock_items).where('stock_items.delivery_date > ?', MINIMUM_DELIVERY_DATE).uniq
-      sort_by_name(outlets.to_a) unless postcode.present?
-
-      outlets = add_items(outlets.to_a)
-
-      return outlets if postcode.nil?
-      add_distances(outlets, postcode)
+      sort_by_name(outlets.to_a)
+      add_items(outlets.to_a)
     end
 
     private
@@ -39,19 +34,6 @@ class OutletRepository
           { stock_items: add_image_tags(outlet.stock_items.map(&:attributes)) }
         )
       end
-    end
-
-    def add_distances(outlets, postcode)
-      user_location = CoordinatesQuery.for_postcode(postcode)
-      outlets.map do |outlet|
-        outlet_location = [ outlet['lat'], outlet['long'] ]
-        outlet.merge(
-          {
-            distance: Utils.distance_in_miles(outlet_location, user_location).round(2),
-            distance_units: ' miles away',
-          }
-        )
-      end.sort { |x, y| x['distance'] <=> y['distance'] }
     end
   end
 end
