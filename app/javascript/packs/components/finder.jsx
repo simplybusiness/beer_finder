@@ -22,7 +22,7 @@ export default class Finder extends React.Component {
       return {
         ...outlet,
         distance: distance.toFixed(2),
-        distanceUnits: 'Miles'
+        distanceUnits: 'miles away'
       }
     })
     this.setState({outlets: _.sortBy(newOutlets, 'distance')})
