@@ -17,7 +17,9 @@ export default class Finder extends React.Component {
     const postcodes = new PostcodesIO();
     postcodes.lookup(postcode).then(postcode => {
       this.sortByDistance(postcode.latitude, postcode.longitude);
-    });
+    }).catch(
+      () => console.log('unable to recognise postcode')
+    )
   }
 
   sortByDistance(lat, long) {
