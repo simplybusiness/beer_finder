@@ -29,7 +29,7 @@ export default class Finder extends React.Component {
         distanceUnits: 'miles away'
       }
     })
-    this.setState({outlets: _.sortBy(newOutlets, 'distance')})
+    this.setState({outlets: sortBy(newOutlets, 'distance')})
   }
 
   onChange = (event) => {
