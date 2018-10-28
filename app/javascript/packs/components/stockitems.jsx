@@ -1,7 +1,7 @@
 import React from 'react'
 import moment from 'moment'
 
-const StockItems = ({items}) => {
+const StockItems = ({ items = [] }) => {
   return items.map(item => {
     return (
       <li className="list-group-item d-flex justify-content-between align-items-center" key={item.id}>
