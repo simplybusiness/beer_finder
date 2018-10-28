@@ -1,7 +1,7 @@
 import React from 'react'
 import StockItems from './stockitems'
 
-const Outlets =({outlets}) => outlets.map(outlet => (
+const Outlets =({outlets = []}) => outlets.map(outlet => (
   <div className="card" key={outlet.id}>
     <div className="card-body">
       <div className="container">
