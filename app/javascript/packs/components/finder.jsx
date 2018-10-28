@@ -5,12 +5,14 @@ import lookUpPostcode from './utils/lookUpPostcode'
 import Outlets from './outlets'
 
 export default class Finder extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      outlets: this.props.outlets,
-      postcode: ''
-    };
+
+  state = {
+    outlets: this.props.outlets,
+    postcode: ''
+  }
+
+  outlets = () => {
+    this.props.outlets
   }
 
   sortByDistance = (lat, long) => {
