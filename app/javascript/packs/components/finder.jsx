@@ -16,7 +16,8 @@ export default class Finder extends React.Component {
   }
 
   sortByDistance = (lat, long) => {
-    const newOutlets = this.state.outlets.map(outlet => {
+    const { outlets = [] } = this.state;
+    const newOutlets = outlets.map(outlet => {
       let distance = geolib.getDistance(
         {latitude: outlet.lat, longitude: outlet.long},
         {latitude: lat, longitude: long}
