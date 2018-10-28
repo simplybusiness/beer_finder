@@ -1,6 +1,6 @@
 import React from 'react'
 import geolib from 'geolib'
-import _ from 'lodash'
+import sortBy from 'lodash/sortBy'
 import lookUpPostcode from './utils/lookUpPostcode'
 import Outlets from './outlets'
 
