@@ -41,7 +41,7 @@ export default class Finder extends React.Component {
     lookUpPostcode(this.state.postcode, this.sortByDistance);
   }
 
-  renderForm() {
+  renderForm = () => {
     return (
       <form onSubmit={this.onSubmit}>
         <div className="form-row">
