@@ -7,7 +7,7 @@ import Outlets from './outlets'
 export default class Finder extends React.Component {
 
   state = {
-    outlets: this.props.outlets,
+    outlets: this.props.outlets || [],
     postcode: ''
   }
 
