@@ -22,6 +22,7 @@ export default class Finder extends React.Component {
         {latitude: outlet.lat, longitude: outlet.long},
         {latitude: lat, longitude: long}
       ) * 0.00062137
+
       return {
         ...outlet,
         distance: distance.toFixed(2),
