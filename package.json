@@ -2,18 +2,18 @@
   "name": "beer_finder",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "3.5",
-    "babel-preset-react": "^6.24.1",
     "geolib": "^2.0.24",
     "lodash": "^4.17.11",
     "moment": "^2.22.2",
     "postcodesio-client": "^0.3.4",
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
-    "react-dom": "^16.5.2",
-    "webpacker-react": "^0.3.2"
+    "react-dom": "^16.5.2"
   },
   "devDependencies": {
-    "webpack-dev-server": "2.11.2"
+    "webpack-dev-server": "2.11.2",
+    "webpacker-react": "^0.3.2",
+    "@rails/webpacker": "3.5",
+    "babel-preset-react": "^6.24.1"
   }
 }
